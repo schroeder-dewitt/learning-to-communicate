@@ -1,0 +1,28 @@
+#!/bin/bash
+th comm.lua \
+-debug 0 \
+-game Hanabi \
+-game_nagents 2 \
+-game_cheat 0 \
+-game_num_nums 5 \
+-game_num_cols 5 \
+-game_action_space 21 \
+-game_comm_limited 0 \
+-game_comm_bits 0 \
+-game_comm_sigma 0 \
+-nsteps 88 \
+-gamma 1 \
+-model_dial 1 \
+-model_bn 1 \
+-model_one_hot 1 \
+-model_know_share 1 \
+-model_action_aware 1 \
+-model_rnn_size 256 \
+-model_rnn_layers 2 \
+-bs 64 \
+-learningrate 0.0005 \
+-nepisodes 500000 \
+-step 50 \
+-step_test 50 \
+-step_target 100 \
+-cuda 0
