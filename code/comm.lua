@@ -42,6 +42,8 @@ cmd:option('-model_dropout', 0, 'dropout')
 cmd:option('-model_bn', 1, 'batch normalisation')
 cmd:option('-model_target', 1, 'use a target network')
 cmd:option('-model_avg_q', 1, 'avearge q functions')
+cmd:option('-model_one_hot', 0, 'one-hot encoding of model')
+
 
 -- training
 cmd:option('-bs', 32, 'batch size')
@@ -81,6 +83,20 @@ cmd:option('-game_comm_limited', 1, '')
 cmd:option('-game_comm_bits', 2, '')
 cmd:option('-game_comm_sigma', 0, '')
 cmd:option('-nsteps', 6, 'number of steps')
+
+-- Hanabi
+cmd:option('-game', 'Hanabi', 'game name')
+cmd:option('-game_action_space', 2, 'action space')
+cmd:option('-game_nagents', 2, '2-5 players')
+cmd:option('-game_reward_shift', 0, 'reward shift')
+cmd:option('-game_num_nums', 5, 'highest number in deck (5 in original game)')
+cmd:option('-game_num_cols', 5, 'number of suits')
+cmd:option('-game_cheat', 0, 'on = player can see his own hand')
+cmd:option('-game_nr_tokes', 8, 'number of tokens (8 in original game)')
+cmd:option('-game_nr_fuses', 3, 'number of fuses (3 in original game)')
+cmd:option('-debug', 0, 'on = debug state')
+cmd:option('-model_input_size', 30, 'model input size')
+cmd:option('-game_action_space', 39, 'game action space')
 
 cmd:text()
 
@@ -352,6 +368,7 @@ local function run_episode(opt, game, model, agent, test_mode)
                         end
                         -- If comm action was taken
                         if action_range_comm[b][2][1] > 0 then
+                            print("q_t: ", q_t:size(), " action_range_comm: ", action_range_comm[b])
                             local v, a = torch.max(q_t[action_range_comm[b]], 2)
                             max_a_comm[b] = agent[i].range[{ action_range_comm[b][2] }][a:squeeze()]
                         end

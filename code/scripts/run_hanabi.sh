@@ -1,9 +1,7 @@
 #!/bin/bash
 th comm.lua \
--debug 0 \
 -game Hanabi \
 -game_nagents 2 \
--game_cheat 0 \
 -game_num_nums 5 \
 -game_num_cols 5 \
 -game_action_space 21 \
@@ -12,7 +10,7 @@ th comm.lua \
 -game_comm_sigma 0 \
 -nsteps 88 \
 -gamma 1 \
--model_dial 1 \
+-model_dial 0 \
 -model_bn 1 \
 -model_one_hot 1 \
 -model_know_share 1 \
